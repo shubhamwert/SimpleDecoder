@@ -6,6 +6,7 @@ public class ContainerData {
     static public ArrayList<PassWordCust> mData;
 
     public ContainerData(){
+        mData.add(new CodeGenerator("Sample").getWord());
 
     }
 

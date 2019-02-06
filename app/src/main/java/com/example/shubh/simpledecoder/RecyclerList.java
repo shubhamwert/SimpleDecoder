@@ -10,7 +10,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class RecyclerList extends RecyclerView.Adapter<RecyclerList.ViewHolder> {
-private Context mContext;
+    public RecyclerList() {
+        super();
+    }
+
+    private Context mContext;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
