@@ -4,6 +4,16 @@ public class PassWordCust {
    private String mName;
    private String mWord;
 
+    public PassWordCust(String Name,String Word) {
+        super();
+        Name= mName;
+        Word=mWord;
+    }
+
+    public PassWordCust() {
+        super();
+    }
+
     public void setmName(String mName) {
         this.mName = mName;
     }

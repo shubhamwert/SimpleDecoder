@@ -13,6 +13,7 @@ RecyclerList Adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ContainerData.inti();
         recyclerView=findViewById(R.id.mRecyler);
         Adapter=new RecyclerList();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
