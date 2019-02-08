@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleDecoder</string>
+    <string name="key">Enter the Key Word</string>
+    <string name="submit">Submit</string>
 </resources>

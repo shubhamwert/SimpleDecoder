@@ -4,27 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".FileAdderActivity">
 
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mRecyler"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/key"/>
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:id="@+id/word_pass"
+            android:inputType="text"/>
+
 
     </LinearLayout>
-<android.support.design.widget.FloatingActionButton
-    android:layout_width="wrap_content"
+<Button
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:src="@android:drawable/star_on"
-    android:layout_alignParentEnd="true"
+    android:text="@string/submit"
+    android:onClick="submit"
     android:layout_alignParentBottom="true"
-    android:onClick="next"
-    android:layout_margin="12dp"/>
+    android:layout_margin="12dp"
+    />
 </RelativeLayout>

@@ -3,7 +3,7 @@ package com.example.shubh.simpledecoder;
 import android.content.Intent;
 
 public class CodeGenerator {
-     PassWordCust Word;
+     private PassWordCust Word;
 
     public CodeGenerator(String s){
         Word=new PassWordCust();
