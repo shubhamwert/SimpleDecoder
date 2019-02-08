@@ -17,4 +17,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/rec_pass_word"
         android:layout_weight="1"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@android:drawable/ic_input_delete"
+        android:id="@+id/del"/>
 </LinearLayout>

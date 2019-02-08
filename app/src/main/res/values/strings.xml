@@ -2,4 +2,8 @@
     <string name="app_name">SimpleDecoder</string>
     <string name="key">Enter the Key Word</string>
     <string name="submit">Submit</string>
+    <string name="mehtod_switch">mehtod switch</string>
+    <string name="name">Name</string>
+    <string name="coded_string">Coded String</string>
+    <string name="delete">delete</string>
 </resources>

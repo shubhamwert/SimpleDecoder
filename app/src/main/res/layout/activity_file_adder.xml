@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:text="@string/key"/>
         <EditText
+            android:layout_margin="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/word_pass"
@@ -24,6 +25,19 @@
 
 
     </LinearLayout>
+    <Switch
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentEnd="true"
+    android:text="@string/mehtod_switch"
+    android:id="@+id/mlswitch"/>
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="@string/mehtod_switch"
+        android:id="@+id/lswitch"/>
+
 <Button
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

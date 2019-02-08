@@ -3,7 +3,9 @@ package com.example.shubh.simpledecoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class FileAdderActivity extends AppCompatActivity {
@@ -15,6 +17,15 @@ public class FileAdderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_adder);
 
         ed = findViewById(R.id.word_pass);
+        Switch s=findViewById(R.id.lswitch);
+        s.setChecked(ContainerData.b);
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ContainerData.b = !ContainerData.b;
+
+            }
+        });
 
 
     }
@@ -22,18 +33,19 @@ public class FileAdderActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this,"Added Word",Toast.LENGTH_SHORT).show();
+
 
     }
 
     public void submit(View view) {
 
         String s=ed.getText().toString().trim();
+        if (!s.equals("")){ContainerData.mData.add(new CodeGenerator(s).getWord());
 
-        ContainerData.mData.add(new CodeGenerator(s).getWord());
+        Toast.makeText(this,"New Word "+s+" Added",Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this,"Adding to directory word = "+s,Toast.LENGTH_SHORT).show();
-
-        finish();
+        finish();}
+        else {Toast.makeText(this,"No Word to Add Found",Toast.LENGTH_SHORT).show();
+        }
     }
 }

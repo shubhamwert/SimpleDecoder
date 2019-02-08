@@ -1,6 +1,6 @@
 package com.example.shubh.simpledecoder;
 
-import android.content.Intent;
+import java.util.Random;
 
 public class CodeGenerator {
      private PassWordCust Word;
@@ -14,23 +14,36 @@ public class CodeGenerator {
     }
 
     private String Calculate(String s) {
-        String p="";
+
+        StringBuilder p = new StringBuilder();
 
 int k;
-        for (int i=0;i<s.length();i++){
-            k= s.charAt(i);
-            k=k-65;
-            k=k*k+55;
-            k=k%26+65;
-           char a = (char)k;
-           p=p+a;
+if (!ContainerData.b){
+        for (int i=0;i<s.length();i++) {
+            k = s.charAt(i);
+            k = k - 65;
+            k = k * k + 55;
+            k = k % 26 + 65;
+            char a = (char) k;
+            p.append(a);
+        }}
+else{ for (int i=0;i<s.length();i++) {
+    k = s.charAt(i);
+    k = k - 55;
+    k=k+new Random().nextInt(96-55);
+    k = k * k + 55*k;
+    k = k % 26 + 65;
+    char a = (char) k;
+    p.append(a);
+}
+
+
+    }
 
 
 
 
-        }
-
-        return p;
+        return p.toString();
     }
 
     public PassWordCust getWord() {

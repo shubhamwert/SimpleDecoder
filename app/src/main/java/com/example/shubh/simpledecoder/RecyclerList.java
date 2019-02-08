@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class RecyclerList extends RecyclerView.Adapter<RecyclerList.ViewHolder> {
@@ -28,10 +30,10 @@ public class RecyclerList extends RecyclerView.Adapter<RecyclerList.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
     viewHolder.Word.setText(ContainerData.mData.get(i).getmName());
     viewHolder.Code.setText(ContainerData.mData.get(i).getmWord());
-
+    viewHolder.img.setMaxWidth(viewHolder.img.getHeight());
 
 
     }
@@ -44,11 +46,14 @@ public class RecyclerList extends RecyclerView.Adapter<RecyclerList.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView Word;
         TextView Code;
+        ImageButton img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Word = itemView.findViewById(R.id.rec_Word);
             Code=itemView.findViewById(R.id.rec_pass_word);
+            img=itemView.findViewById(R.id.del);
+
         }
     }
 
