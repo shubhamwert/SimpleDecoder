@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -17,7 +18,7 @@ import android.widget.Switch;
 public class MainActivity extends AppCompatActivity {
 RecyclerView recyclerView;
 RecyclerList Adapter;
-    Switch s;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +30,9 @@ RecyclerList Adapter;
 
         recyclerView.setLayoutManager(mLayoutManager);
 
-        s = findViewById(R.id.mswitch);
-        s.setChecked(ContainerData.b);
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ContainerData.b = !ContainerData.b;
-            }
-        });
 
         recyclerView.setAdapter(Adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,recyclerView,new ClickListener(){
 
 
@@ -54,31 +48,25 @@ RecyclerList Adapter;
 
             }
         }));
-        prepareData();
 
 
 
-    }
-
-    private void prepareData() {
-ContainerData.mData.add(new CodeGenerator("hello").getWord());
-Adapter.notifyDataSetChanged();
-s.setChecked(ContainerData.b);
 
     }
+
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
         Adapter.notifyDataSetChanged();
-        s.setChecked(ContainerData.b);
+
     }
 
     public void next(View view) {
         Intent i=new Intent(MainActivity.this,FileAdderActivity.class);
         startActivity(i);
     }
-    public static interface ClickListener{
+    public interface ClickListener{
         public void onClick(View view,int position);
         public void onLongClick(View view,int position);}
 

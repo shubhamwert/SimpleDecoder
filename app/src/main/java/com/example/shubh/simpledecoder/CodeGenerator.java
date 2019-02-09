@@ -21,7 +21,7 @@ int k;
 if (!ContainerData.b){
         for (int i=0;i<s.length();i++) {
             k = s.charAt(i);
-            k = k - 65;
+//            k = k - 65;
             k = k * k + 55;
             k = k % 26 + 65;
             char a = (char) k;
@@ -29,7 +29,7 @@ if (!ContainerData.b){
         }}
 else{ for (int i=0;i<s.length();i++) {
     k = s.charAt(i);
-    k = k - 55;
+//    k = k - 55;
     k=k+new Random().nextInt(96-55);
     k = k * k + 55*k;
     k = k % 26 + 65;

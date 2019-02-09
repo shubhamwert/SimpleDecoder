@@ -17,9 +17,9 @@ public class ContainerData {
 
 
     public static void inti() {
+for (int i=0;i<100;i++){
 
-mData.add(new PassWordCust("Sample","Tdaal"));
-
-        mData.add(new CodeGenerator("Sample").getWord());
+    mData.add(new CodeGenerator(""+i).getWord());
+}
     }
 }
