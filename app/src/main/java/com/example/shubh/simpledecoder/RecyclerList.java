@@ -44,7 +44,7 @@ private int lastPosition=0;
 
     }
     @Override
-    public void onViewDetachedFromWindow(final RecyclerList.ViewHolder holder)
+    public void onViewDetachedFromWindow(@NonNull final RecyclerList.ViewHolder holder)
     {
         ((ViewHolder)holder).clearAnimation();
     }
