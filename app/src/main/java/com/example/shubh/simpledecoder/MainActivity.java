@@ -2,31 +2,30 @@ package com.example.shubh.simpledecoder;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.shubh.simpledecoder.dataHandler.mySqlhelper;
 
 public class MainActivity extends AppCompatActivity {
 RecyclerView recyclerView;
 RecyclerList Adapter;
-
+mySqlhelper mySqlhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ContainerData.inti(MainActivity.this);
+        mySqlhelper=new mySqlhelper(this);
+        ContainerData.inti(getApplicationContext());
         recyclerView=findViewById(R.id.mRecyler);
         Adapter=new RecyclerList();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -53,14 +52,41 @@ RecyclerList Adapter;
         }));
 
 
+refreshList();
+
+    }
+public void refreshList(){
+
+    Cursor res=mySqlhelper.GetAllData();
+
+
+    if (res.getCount()==0){        Toast.makeText(this,"NO DATA FOUND",Toast.LENGTH_SHORT).show();
+
+        return;
+    }
+
+    ContainerData.mData.clear();
+    while (res.moveToNext()){
+
+        ContainerData.mData.add(new PassWordCust(res.getString(1),res.getString(2)));
 
 
     }
+
+    Adapter.notifyDataSetChanged();
+
+
+}
 
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        for (int i=0;i<ContainerData.mData.size();i++){
+            mySqlhelper.insertData(ContainerData.mData.get(i));
+        }
+        refreshList();
+
         Adapter.notifyDataSetChanged();
 
     }

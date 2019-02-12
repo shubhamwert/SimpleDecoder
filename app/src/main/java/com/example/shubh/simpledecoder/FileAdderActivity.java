@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.shubh.simpledecoder.dataHandler.mySqlhelper;
+
 import static com.example.shubh.simpledecoder.ContainerData.b;
 
 public class FileAdderActivity extends AppCompatActivity {
@@ -67,9 +69,8 @@ public class FileAdderActivity extends AppCompatActivity {
     public void submit(View view) {
 
         String s=ed.getText().toString().trim();
-        if (!s.equals("")){ContainerData.mData.add(new CodeGenerator(s).getWord());
+        if (!s.equals("")){ContainerData.addData(new CodeGenerator(s).getWord());
 
-        Toast.makeText(this,"New Word "+s+" Added",Toast.LENGTH_SHORT).show();
 
         finish();}
         else {Toast.makeText(this,"No Word to Add Found",Toast.LENGTH_SHORT).show();
