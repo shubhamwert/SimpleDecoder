@@ -15,15 +15,18 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import com.example.shubh.simpledecoder.dataHandler.mySqlhelper;
+
 public class MainActivity extends AppCompatActivity {
 RecyclerView recyclerView;
 RecyclerList Adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ContainerData.inti();
+        ContainerData.inti(MainActivity.this);
         recyclerView=findViewById(R.id.mRecyler);
         Adapter=new RecyclerList();
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());

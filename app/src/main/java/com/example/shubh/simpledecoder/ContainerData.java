@@ -1,13 +1,20 @@
 package com.example.shubh.simpledecoder;
 
+import android.content.Context;
+import android.database.Cursor;
+
+import com.example.shubh.simpledecoder.dataHandler.mySqlhelper;
+
 import java.util.ArrayList;
 
 public class ContainerData {
     static public ArrayList<PassWordCust> mData=new ArrayList<>();
     static boolean b=false;
+    static mySqlhelper Sqlhelper;
+   static Context mContext;
+    public ContainerData(Context context){
 
-    public ContainerData(){
-
+mContext=context;
     }
 
     static public void addData(PassWordCust passWordCust){
@@ -16,10 +23,9 @@ public class ContainerData {
     }
 
 
-    public static void inti() {
-for (int i=0;i<100;i++){
+    public static void inti(Context context) {
+Sqlhelper = new mySqlhelper(mContext);
+        mContext=context;
 
-    mData.add(new CodeGenerator(""+i).getWord());
-}
     }
 }
