@@ -25,6 +25,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/name"
+            android:gravity="center"
             android:background="@android:color/white"
             android:alpha="1"/>
         <TextView
@@ -33,11 +34,15 @@
             android:layout_height="wrap_content"
             android:text="@string/coded_string"
             android:background="@android:color/white"
+            android:gravity="center"
+
             android:alpha="1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
+            android:gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/white"
             android:alpha="1"/>
     </LinearLayout>
@@ -57,13 +62,31 @@
 
     </LinearLayout>
     </LinearLayout>
-<android.support.design.widget.FloatingActionButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@android:drawable/star_on"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentBottom="true"
-    android:onClick="next"
-    android:layout_margin="12dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="340dp"
+        android:layout_marginBottom="18dp"
+        android:src="@mipmap/refresh"
+        android:onClick="refreshList"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="11dp"
+        android:onClick="next"
+        android:src="@android:drawable/star_on" />
+
+
 
 </RelativeLayout>

@@ -26,9 +26,6 @@ private int lastPosition=0;
         mContext=viewGroup.getContext();
         LayoutInflater inflater=LayoutInflater.from(viewGroup.getContext());
         View v=inflater.inflate(R.layout.recycler_colomn,viewGroup,false);
-        v.setBackgroundColor(Color.red(22));
-        v.setBackgroundColor(Color.green(55));
-        v.setPadding(3,3,3,3);
 
         return new ViewHolder(v);
     }
@@ -57,7 +54,7 @@ private int lastPosition=0;
             Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
             animation.setInterpolator(mContext,android.R.anim.bounce_interpolator);
             viewToAnimate.startAnimation(animation);
-            lastPosition = position;
+
         }
     }
 
@@ -78,6 +75,7 @@ private int lastPosition=0;
             Word = itemView.findViewById(R.id.rec_Word);
             Code=itemView.findViewById(R.id.rec_pass_word);
             img=itemView.findViewById(R.id.del);
+            itemView.setPadding(12,12,12,12);
 
         }
         public void clearAnimation()

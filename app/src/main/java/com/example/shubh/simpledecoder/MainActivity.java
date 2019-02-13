@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view, int position) {
-            mySqlhelper.deleteData(""+position);
-            ContainerData.mData.remove(position);
-            Adapter.notifyDataSetChanged();
-            refreshList();
+            mySqlhelper.deleteData(""+ContainerData.mData.get(position).getmName());
+                refreshList();
+
+                Adapter.notifyDataSetChanged();
 
             }
 
@@ -56,20 +56,24 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        })); }
+        }));
+
+
+
+
+    }
 public void refreshList(){
     Cursor data=mySqlhelper.GetAllData();
     int i=0;
     ContainerData.mData.clear();
     while (data.moveToNext()){
         ContainerData.mData.add(new PassWordCust(data.getString(1),data.getString(2)));
-        Log.d(TAG, "refreshList : "+data.getString(1)+" WORD "+data.getString(2));
-        Log.d(TAG, "mData List "+ContainerData.mData.get(i).getmName()+"mData List "+ContainerData.mData.get(i).getmWord());
         i++;
 
     }
     Adapter.notifyDataSetChanged();
-    data.close();}
+    data.close();
+    }
     @Override
     protected void onPostResume() {super.onPostResume();
         refreshList();
@@ -78,6 +82,11 @@ public void refreshList(){
         Intent i=new Intent(MainActivity.this,FileAdderActivity.class);
         startActivity(i);
     }
+
+    public void refreshList(View view) {
+        refreshList();
+    }
+
     public interface ClickListener{
         public void onClick(View view,int position);
         public void onLongClick(View view,int position);}

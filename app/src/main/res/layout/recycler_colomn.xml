@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 <TextView
+    android:gravity="center"
 
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -12,12 +13,15 @@
     />
 
     <TextView
+        android:gravity="center"
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/rec_pass_word"
         android:layout_weight="1"/>
     <ImageButton
+        android:gravity="center"
+        android:scaleType="centerCrop"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@android:drawable/ic_input_delete"

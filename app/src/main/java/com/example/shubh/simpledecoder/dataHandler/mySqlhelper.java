@@ -66,11 +66,11 @@ public class mySqlhelper extends SQLiteOpenHelper {
         return true;
 
     }
-    public boolean deleteData(String id){
+    public boolean deleteData(String name){
         SQLiteDatabase db=this.getWritableDatabase();
         try
         {
-            int result=db.delete(TABLE_NAME,"id = ? ",new String[]{ id });
+            int result=db.delete(TABLE_NAME,"name = ? ",new String[]{ name });
             if(result>0)
             {
                 return true;
