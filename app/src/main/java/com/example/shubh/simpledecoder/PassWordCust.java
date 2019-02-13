@@ -6,8 +6,8 @@ public class PassWordCust {
 
     public PassWordCust(String Name,String Word) {
         super();
-        Name= mName;
-        Word=mWord;
+       mName=Name;
+       mWord=Word;
     }
 
     public PassWordCust() {

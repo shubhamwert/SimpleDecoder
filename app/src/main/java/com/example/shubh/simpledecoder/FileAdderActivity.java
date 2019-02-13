@@ -16,12 +16,13 @@ import static com.example.shubh.simpledecoder.ContainerData.b;
 
 public class FileAdderActivity extends AppCompatActivity {
     EditText ed;
+    mySqlhelper mySqlhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_adder);
-
+        mySqlhelper=new mySqlhelper(this);
         ed = findViewById(R.id.word_pass);
         final Switch s=findViewById(R.id.lswitch);
         s.setChecked(b);
@@ -69,11 +70,20 @@ public class FileAdderActivity extends AppCompatActivity {
     public void submit(View view) {
 
         String s=ed.getText().toString().trim();
-        if (!s.equals("")){ContainerData.addData(new CodeGenerator(s).getWord());
+        if (s.length()>0){
+        AddData(new CodeGenerator(s).getWord());
 
 
         finish();}
         else {Toast.makeText(this,"No Word to Add Found",Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void AddData(PassWordCust passWordCust){
+        boolean insertData=mySqlhelper.insertData(passWordCust);
+        if (insertData){
+            Toast.makeText(this,"DATA UPDATED SUCCESSFULLY",Toast.LENGTH_SHORT).show();
+        }
+        else {            Toast.makeText(this,"DATA UPDATE FAILED",Toast.LENGTH_SHORT).show();
         }
     }
 }

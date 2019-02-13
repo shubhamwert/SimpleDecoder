@@ -3,8 +3,10 @@ package com.example.shubh.simpledecoder.dataHandler;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.shubh.simpledecoder.PassWordCust;
 
@@ -15,6 +17,7 @@ public class mySqlhelper extends SQLiteOpenHelper {
     public static final String ID="id";
     public static final String NAME="name";
     public static final String WORD="WORD";
+    public static final String TAG="FILE STORED";
 
 
     public mySqlhelper( Context context) {
@@ -25,7 +28,7 @@ public class mySqlhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,WORD INT) ");
+        db.execSQL("create table "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, "+NAME+" TEXT,"+WORD+" INT) ");
 
 
     }
@@ -41,6 +44,7 @@ public class mySqlhelper extends SQLiteOpenHelper {
         ContentValues contentValues=new ContentValues();
         contentValues.put(NAME,passWordCust.getmName());
         contentValues.put(WORD,passWordCust.getmWord());
+        Log.d(TAG, "updateData: "+contentValues.get(NAME)+" WORd "+contentValues.get(WORD));
         long result=db.insert(TABLE_NAME,null,contentValues);
         return result != -1;
 
@@ -48,11 +52,8 @@ public class mySqlhelper extends SQLiteOpenHelper {
 
     }
     public Cursor GetAllData(){
-
         SQLiteDatabase db=this.getWritableDatabase();
-        return db.rawQuery("select * from "+TABLE_NAME,null);
-
-
+        return db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
     }
     public boolean updateData(String id,PassWordCust passWordCust){
 
@@ -65,11 +66,25 @@ public class mySqlhelper extends SQLiteOpenHelper {
         return true;
 
     }
-    public Integer deleteData(String id){
+    public boolean deleteData(String id){
         SQLiteDatabase db=this.getWritableDatabase();
+        try
+        {
+            int result=db.delete(TABLE_NAME,"id = ? ",new String[]{ id });
+            if(result>0)
+            {
+                return true;
+            }
 
-        return db.delete(TABLE_NAME,"id = ? ",new String[]{ id });
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
     }
+
+
 
 
 }

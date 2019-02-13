@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,12 +17,14 @@ import android.widget.Toast;
 import com.example.shubh.simpledecoder.dataHandler.mySqlhelper;
 
 public class MainActivity extends AppCompatActivity {
-RecyclerView recyclerView;
-RecyclerList Adapter;
-mySqlhelper mySqlhelper;
+        RecyclerView recyclerView;
+        RecyclerList Adapter;
+        mySqlhelper mySqlhelper;
+        String TAG="DATA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mySqlhelper=new mySqlhelper(this);
@@ -35,13 +38,17 @@ mySqlhelper mySqlhelper;
 
         recyclerView.setAdapter(Adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        refreshList();
+
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,recyclerView,new ClickListener(){
 
 
             @Override
             public void onClick(View view, int position) {
+            mySqlhelper.deleteData(""+position);
             ContainerData.mData.remove(position);
             Adapter.notifyDataSetChanged();
+            refreshList();
 
             }
 
@@ -49,48 +56,24 @@ mySqlhelper mySqlhelper;
             public void onLongClick(View view, int position) {
 
             }
-        }));
-
-
-refreshList();
-
-    }
+        })); }
 public void refreshList(){
-
-    Cursor res=mySqlhelper.GetAllData();
-
-
-    if (res.getCount()==0){        Toast.makeText(this,"NO DATA FOUND",Toast.LENGTH_SHORT).show();
-
-        return;
-    }
-
+    Cursor data=mySqlhelper.GetAllData();
+    int i=0;
     ContainerData.mData.clear();
-    while (res.moveToNext()){
-
-        ContainerData.mData.add(new PassWordCust(res.getString(1),res.getString(2)));
-
+    while (data.moveToNext()){
+        ContainerData.mData.add(new PassWordCust(data.getString(1),data.getString(2)));
+        Log.d(TAG, "refreshList : "+data.getString(1)+" WORD "+data.getString(2));
+        Log.d(TAG, "mData List "+ContainerData.mData.get(i).getmName()+"mData List "+ContainerData.mData.get(i).getmWord());
+        i++;
 
     }
-
     Adapter.notifyDataSetChanged();
-
-
-}
-
-
+    data.close();}
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        for (int i=0;i<ContainerData.mData.size();i++){
-            mySqlhelper.insertData(ContainerData.mData.get(i));
-        }
+    protected void onPostResume() {super.onPostResume();
         refreshList();
-
-        Adapter.notifyDataSetChanged();
-
-    }
-
+        Adapter.notifyDataSetChanged();}
     public void next(View view) {
         Intent i=new Intent(MainActivity.this,FileAdderActivity.class);
         startActivity(i);
